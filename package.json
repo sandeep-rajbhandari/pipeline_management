@@ -1,0 +1,26 @@
+{
+  "name": "pipeline_management",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "sandeep rajbhandari <sandeep@solarsesame.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^7.2.4",
+    "@tailwindcss/forms": "^0.5.3",
+    "debounce": "^1.2.1",
+    "esbuild": "^0.17.4",
+    "postcss": "^8.4.21",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^14.0.2",
+    "postcss-nested": "^4.2.1",
+    "postcss-preset-env": "^6.7.0",
+    "sortablejs": "^1.15.3",
+    "tailwindcss": "^3.2.7",
+    "turbolinks": "^5.2.0"
+  },
+  "scripts": {
+    "build:css": "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
+  }
+}

@@ -1,0 +1,34 @@
+div.p-4
+  div.my-2
+    = form_with url: pipeline_list_index_path, method: :get, data: { turbo_frame: 'pipeline_list', turbo_action: 'advance', controller: 'form', action: 'input->form#submit' }, class: 'flex flex-wrap gap-x-4 gap-y-4' do |form|
+      = select_tag :selected_pipeline_id, options_for_select(Pipeline.all.pluck(:name, :id), @selected_pipeline.id)
+
+  div
+    = turbo_frame_tag "pipeline_list"
+      div.flex.flex-col.gap-2
+        div.flex.gap-4
+          - @selected_pipeline.stages.rank(:row_order).each do |stage|
+            = render "shared/card"
+              div.flex.flex-col
+                span
+                  = stage.name
+                span
+                  | count
+        div.flex.gap-4
+          - @selected_pipeline.stages.rank(:row_order).each do |stage|
+            ul class="flex flex-col bg-gray-100 w-[286px] gap-1" data-controller='sortable' data-sortable-group-value="tasks" data-sortable-stage-id=stage.id
+              - stage.tasks.rank(:row_order).each do |task|
+                li data-sortable-update-url=update_row_order_pipeline_list_path(@selected_pipeline,task.id)
+                  = render "shared/card"
+                    div.flex.flex-col
+                      span
+                        = task.taskable.name
+
+
+
+
+
+
+
+
+
