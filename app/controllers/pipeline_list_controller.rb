@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-class PipelineListController < ApplicationController
 
+class PipelineListController < ApplicationController
   def index
     @pipelines = Pipeline.all
     selected_pipeline_id = params[:selected_pipeline_id] || @pipelines.first.id
@@ -10,6 +10,12 @@ class PipelineListController < ApplicationController
   def update_row_order
     @task = Task.find(permitted_update_row_params[:task_id])
     @task.update(row_order_position: permitted_update_row_params[:row_order_position], stage_id: permitted_update_row_params[:stage_id])
+    head :no_content
+  end
+
+  def update_stage_row_order
+    @stage = Stage.find(permitted_update_row_params[:stage_id])
+    @stage.update(row_order_position: permitted_update_row_params[:row_order_position])
     head :no_content
   end
 

@@ -5,24 +5,22 @@ div.p-4
 
   div
     = turbo_frame_tag "pipeline_list"
-      div.flex.flex-col.gap-2
-        div.flex.gap-4
+        ul class="flex gap-2" data-controller='sortable' data-sortable-group-value="stages"
           - @selected_pipeline.stages.rank(:row_order).each do |stage|
-            = render "shared/card"
-              div.flex.flex-col
-                span
-                  = stage.name
-                span
+            li.flex.flex-col data-sortable-update-url=update_stage_row_order_pipeline_list_path(@selected_pipeline,stage.id) 
+              = render "shared/card"
+                div.flex.flex-col
+                  span
+                    = stage.name
+                  span
                   | count
-        div.flex.gap-4
-          - @selected_pipeline.stages.rank(:row_order).each do |stage|
-            ul class="flex flex-col bg-gray-100 w-[286px] gap-1" data-controller='sortable' data-sortable-group-value="tasks" data-sortable-stage-id=stage.id
-              - stage.tasks.rank(:row_order).each do |task|
-                li data-sortable-update-url=update_row_order_pipeline_list_path(@selected_pipeline,task.id)
-                  = render "shared/card"
-                    div.flex.flex-col
-                      span
-                        = task.taskable.name
+              ul class="flex flex-col bg-gray-100 w-[286px] gap-1 grow" data-controller='sortable' data-sortable-group-value="tasks" data-sortable-stage-id=stage.id
+                - stage.tasks.rank(:row_order).each do |task|
+                  li data-sortable-update-url=update_row_order_pipeline_list_path(@selected_pipeline,task.id)
+                      = render "shared/card"
+                        div.flex.flex-col
+                          span
+                            = task.taskable.name
 
 
 
