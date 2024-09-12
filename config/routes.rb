@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     get 'new_stage', action: :new_stage, on: :member
   end
 
-  resources :stages, only: [:create]
+  resources :stages, only: %i[create edit update]
 end

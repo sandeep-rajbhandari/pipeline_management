@@ -21,7 +21,7 @@ class PipelineListController < ApplicationController
 
   def new_stage
     @stage = Stage.new(pipeline_id: params[:id])
-    render 'stage/new'
+    render 'stages/new'
   end
 
   private
