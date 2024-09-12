@@ -1,0 +1,7 @@
+= form_with model: stage do |f|
+  p Name 
+  = f.text_field :name, class: 'w-full'
+  = f.hidden_field :pipeline_id
+  div class="flex justify-start gap-2 my-2"
+    = f.submit 'Save', class: 'btn btn-primary'
+    = link_to 'Cancel', '#', data: { controller: "modal", action: "modal#close" }, class: 'btn-cancel'

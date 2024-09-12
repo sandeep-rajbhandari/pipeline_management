@@ -1,0 +1,33 @@
+@layer components {
+  .btn-common {
+    @apply py-2 px-4 rounded-full text-white cursor-pointer font-bold inline-flex items-center justify-center min-w-[96px];
+  }
+
+  .btn-primary {
+    @apply btn-common bg-primary;
+  }
+
+  .btn-primary:hover {
+    @apply bg-primary-light
+  }
+
+  .btn-link {
+    @apply text-secondary underline;
+  }
+
+  .btn-confirm{
+    @apply btn-common bg-red-600;
+  }
+
+  .btn-confirm:hover{
+    @apply bg-red-700
+  }
+
+  .btn-cancel{
+    @apply btn-common text-black bg-gray-200;
+  }
+
+  .btn-cancel:hover{
+    @apply bg-gray-300
+  }
+}

@@ -7,4 +7,6 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload"
   body
+    div#toast-message
     = yield
+    = turbo_frame_tag "modal"

@@ -1,0 +1,14 @@
+li.flex.flex-col data-sortable-update-url=update_stage_row_order_pipeline_list_path(selected_pipeline_id,stage.id) 
+  = render "shared/card"
+    div.flex.flex-col
+      span
+        = stage.name
+      span
+      | count
+  ul class="flex flex-col bg-gray-100 w-[286px] gap-1 grow" data-controller='sortable' data-sortable-group-value="tasks" data-sortable-stage-id=stage.id
+    - stage.tasks.rank(:row_order).each do |task|
+      li data-sortable-update-url=update_row_order_pipeline_list_path(selected_pipeline_id,task.id)
+          = render "shared/card"
+            div.flex.flex-col
+              span
+                  = task.taskable.name

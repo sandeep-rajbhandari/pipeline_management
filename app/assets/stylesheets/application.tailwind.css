@@ -2,6 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "tailwindcss/variants.css";
+@import '/themes.css';
+@import "components/button.css";
 
 /*
 

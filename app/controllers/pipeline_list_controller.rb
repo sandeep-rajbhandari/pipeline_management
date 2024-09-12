@@ -19,6 +19,11 @@ class PipelineListController < ApplicationController
     head :no_content
   end
 
+  def new_stage
+    @stage = Stage.new(pipeline_id: params[:id])
+    render 'stage/new'
+  end
+
   private
 
   def permitted_update_row_params
