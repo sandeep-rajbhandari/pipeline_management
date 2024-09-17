@@ -24,6 +24,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_10_083456) do
 
   create_table "pipelines", force: :cascade do |t|
     t.string "name"
+    t.string "model"
+    t.boolean "active", default: true
+    t.string "partial"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_10_083456) do
     t.bigint "pipeline_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pipeline_id", "row_order"], name: "index_stages_on_pipeline_id_and_row_order", unique: true
     t.index ["pipeline_id"], name: "index_stages_on_pipeline_id"
   end
 
@@ -44,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_10_083456) do
     t.bigint "stage_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["stage_id", "row_order"], name: "index_tasks_on_stage_id_and_row_order", unique: true
+    t.index ["stage_id", "taskable_id", "taskable_type"], name: "index_tasks_on_stage_id_and_taskable_id_and_taskable_type", unique: true
     t.index ["stage_id"], name: "index_tasks_on_stage_id"
     t.index ["taskable_type", "taskable_id"], name: "index_tasks_on_taskable"
   end

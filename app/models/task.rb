@@ -14,8 +14,10 @@
 #
 # Indexes
 #
-#  index_tasks_on_stage_id  (stage_id)
-#  index_tasks_on_taskable  (taskable_type,taskable_id)
+#  index_tasks_on_stage_id                                    (stage_id)
+#  index_tasks_on_stage_id_and_row_order                      (stage_id,row_order) UNIQUE
+#  index_tasks_on_stage_id_and_taskable_id_and_taskable_type  (stage_id,taskable_id,taskable_type) UNIQUE
+#  index_tasks_on_taskable                                    (taskable_type,taskable_id)
 #
 # Foreign Keys
 #

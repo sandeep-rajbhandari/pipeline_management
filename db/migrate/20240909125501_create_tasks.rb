@@ -9,8 +9,7 @@ class CreateTasks < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :tasks, %i[stages row_order], unique: true
-    add_index :tasks, %i[stages taskable_id taskable_type], unique: true
-
+    add_index :tasks, %i[stage_id row_order], unique: true
+    add_index :tasks, %i[stage_id taskable_id taskable_type], unique: true
   end
 end

@@ -5,7 +5,7 @@ class StagesController < ApplicationController
     @stage = Stage.new(stage_params)
     if @stage.save
       render turbo_stream: [
-        turbo_stream.after('prepend_stages', partial: 'pipeline_list/stage', locals: { stage: @stage, selected_pipeline_id: @stage.pipeline_id }),
+        turbo_stream.before('prepend_stages', partial: 'pipeline_list/stage', locals: { stage: @stage, selected_pipeline_id: @stage.pipeline_id }),
         turbo_stream.remove('add_stage')
       ]
     else

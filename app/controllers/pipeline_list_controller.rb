@@ -24,6 +24,14 @@ class PipelineListController < ApplicationController
     render 'stages/new'
   end
 
+  def new_task
+    @pipeline = Pipeline.find(params[:id])
+    @tasks = @pipeline.model.constantize.where.not(id: Task.joins(stage: :pipeline).where(stages: { pipeline_id: @pipeline.id }).pluck(:id)).pluck(:name, :id)
+
+    @task = Task.new
+    render 'tasks/new'
+  end
+
   private
 
   def permitted_update_row_params

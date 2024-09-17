@@ -8,7 +8,6 @@ class CreateStages < ActiveRecord::Migration[7.0]
       t.references :pipeline, null: false, foreign_key: true
       t.timestamps
     end
-    add_index :stages,%i[pipelines row_order], unique: true
-
+    add_index :stages, %i[pipeline_id row_order], unique: true
   end
 end

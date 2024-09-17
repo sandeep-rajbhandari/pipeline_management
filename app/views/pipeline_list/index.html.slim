@@ -3,18 +3,10 @@ div.p-4
     = form_with url: pipeline_list_index_path, method: :get, data: { turbo_frame: 'pipeline_list', turbo_action: 'advance', controller: 'form', action: 'input->form#submit' }, class: 'flex flex-wrap gap-x-4 gap-y-4' do |form|
       = select_tag :selected_pipeline_id, options_for_select(Pipeline.all.pluck(:name, :id), @selected_pipeline.id)
     = link_to 'New Stage', new_stage_pipeline_list_path(@selected_pipeline), class: 'btn btn-primary', data: { turbo_frame: 'modal' }
+    = link_to 'New Task', new_task_pipeline_list_path(@selected_pipeline), class: 'btn btn-primary', data: { turbo_frame: 'modal' }
   div
     = turbo_frame_tag "pipeline_list"
-        ul class="flex gap-2" data-controller='sortable' data-sortable-group-value="stages"
-          - @selected_pipeline.stages.rank(:row_order).each do |stage|
-            = render "stage", stage: stage, selected_pipeline_id: @selected_pipeline.id
-          div#prepend_stages
-
-
-
-
-
-
-
-
-
+      ul class="flex gap-2" data-controller='sortable' data-sortable-group-value="stages"
+        - @selected_pipeline.stages.rank(:row_order).each do |stage|
+          = render "stage", stage: stage, selected_pipeline_id: @selected_pipeline.id
+        div#prepend_stages

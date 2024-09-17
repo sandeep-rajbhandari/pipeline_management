@@ -1,0 +1,4 @@
+= turbo_frame_tag 'modal' do
+  div#add_task 
+    = render 'shared/modal' do
+      = render 'tasks/form', task: @task, pipeline: @pipeline,task_options: @tasks

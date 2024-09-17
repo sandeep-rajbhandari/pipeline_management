@@ -13,7 +13,8 @@
 #
 # Indexes
 #
-#  index_stages_on_pipeline_id  (pipeline_id)
+#  index_stages_on_pipeline_id                (pipeline_id)
+#  index_stages_on_pipeline_id_and_row_order  (pipeline_id,row_order) UNIQUE
 #
 # Foreign Keys
 #
